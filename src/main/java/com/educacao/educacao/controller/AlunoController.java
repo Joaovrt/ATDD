@@ -15,6 +15,7 @@ import com.educacao.educacao.dtos.AdquirirCursoDTO;
 import com.educacao.educacao.dtos.CriarAlunoDTO;
 import com.educacao.educacao.dtos.DesistirCursoDTO;
 import com.educacao.educacao.dtos.FinalizarCursoDTO;
+import com.educacao.educacao.dtos.IniciarCursoDTO;
 import com.educacao.educacao.model.Aluno;
 import com.educacao.educacao.model.AlunoCurso;
 import com.educacao.educacao.model.Curso;
@@ -36,7 +37,7 @@ public class AlunoController {
     @PostMapping("/adquirirCurso")
     public Aluno adquirirCurso(@RequestBody AdquirirCursoDTO request){
         if (request.idAluno() < 0 || request.idAluno() >= alunos.size()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Id invalido");
+            throw new IndexOutOfBoundsException("Id invalido");
         }
         Aluno aluno = alunos.get(request.idAluno());
         List<AlunoCurso> listAlunoCurso = aluno.getCursosAdquiridos();
@@ -49,16 +50,26 @@ public class AlunoController {
     @PostMapping("/finalizarCurso")
     public String finalizarCurso(@RequestBody FinalizarCursoDTO request){
         if (request.idAluno() < 0 || request.idAluno() >= alunos.size()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Id invalido");
+            throw new IndexOutOfBoundsException("Id invalido");
         }
         Aluno aluno = alunos.get(request.idAluno());
         return aluno.finalizarCurso(request.idCurso(), request.media());
     }
 
+    @PostMapping("/iniciarCurso")
+    public Aluno iniciarCurso(@RequestBody IniciarCursoDTO request){
+        if (request.idAluno() < 0 || request.idAluno() >= alunos.size()) {
+            throw new IndexOutOfBoundsException("Id invalido");
+        }
+        Aluno aluno = alunos.get(request.idAluno());
+        aluno.iniciarCurso(request.idCurso());
+        return aluno;
+    }
+
     @PostMapping("/desistirCurso")
     public Aluno desistirCurso(@RequestBody DesistirCursoDTO request){
         if (request.idAluno() < 0 || request.idAluno() >= alunos.size()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Id invalido");
+            throw new IndexOutOfBoundsException("Id invalido");
         }
         Aluno aluno = alunos.get(request.idAluno());
         aluno.desistirCurso(request.idCurso());
