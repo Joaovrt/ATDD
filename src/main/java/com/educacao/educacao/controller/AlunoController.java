@@ -46,7 +46,7 @@ public class AlunoController {
         Curso curso = new Curso(listAlunoCurso.size(), request.nome());
         AlunoCurso alunoCurso = new AlunoCurso(curso);
         listAlunoCurso.add(alunoCurso);
-        aluno.setQtdCursosDisponiveis(qtdCursosDisponiveis);
+        aluno.setQtdCursosDisponiveis(qtdCursosDisponiveis-1);
         return aluno;
     }
 
