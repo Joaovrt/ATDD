@@ -3,13 +3,11 @@ package com.educacao.educacao.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.educacao.educacao.dtos.AdquirirCursoDTO;
 import com.educacao.educacao.dtos.CriarAlunoDTO;
@@ -40,10 +38,15 @@ public class AlunoController {
             throw new IndexOutOfBoundsException("Id invalido");
         }
         Aluno aluno = alunos.get(request.idAluno());
+        int qtdCursosDisponiveis = aluno.getQtdCursosDisponiveis();
+        if(aluno.getQtdCursosDisponiveis()<=0){
+            throw new IllegalStateException("Não há cursos disponíveis.");
+        }
         List<AlunoCurso> listAlunoCurso = aluno.getCursosAdquiridos();
         Curso curso = new Curso(listAlunoCurso.size(), request.nome());
         AlunoCurso alunoCurso = new AlunoCurso(curso);
         listAlunoCurso.add(alunoCurso);
+        aluno.setQtdCursosDisponiveis(qtdCursosDisponiveis);
         return aluno;
     }
 

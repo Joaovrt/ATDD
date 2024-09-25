@@ -12,14 +12,14 @@ public class Aluno {
     public Aluno(int id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.qtdCursosDisponiveis = 0;
+        this.qtdCursosDisponiveis = 1;
         this.cursosAdquiridos = new ArrayList<AlunoCurso>();
     }
 
     public Aluno(int id, String nome, List<AlunoCurso> listCursosAdquiridos) {
         this.id = id;
         this.nome = nome;
-        this.qtdCursosDisponiveis = 0;
+        this.qtdCursosDisponiveis = 1;
         this.cursosAdquiridos = listCursosAdquiridos;
     }
 
@@ -28,10 +28,13 @@ public class Aluno {
             throw new IndexOutOfBoundsException("Id invalido");
         }
         AlunoCurso alunoCurso = this.cursosAdquiridos.get(idCurso);
+        if(alunoCurso.getStatus()!=StatusCurso.EM_ANDAMENTO){
+            throw new IllegalStateException("Curso deve estar em andamento para finalizar.");
+        }
         alunoCurso.setStatus(StatusCurso.FINALIZADO);
         alunoCurso.setMedia(media);
         if(media>7.0){
-            this.setQtdCursosDisponiveis(this.qtdCursosDisponiveis+3);
+            this.qtdCursosDisponiveis+=3;
             return "Benefício de mais 3 cursos adquirido!";
         }
         else{
@@ -44,6 +47,9 @@ public class Aluno {
             throw new IndexOutOfBoundsException("Id invalido");
         }
         AlunoCurso alunoCurso = this.cursosAdquiridos.get(idCurso);
+        if(alunoCurso.getStatus()!=StatusCurso.EM_ANDAMENTO){
+            throw new IllegalStateException("Curso deve estar em andamento para declinar.");
+        }
         alunoCurso.setStatus(StatusCurso.NAO_INICIADO);
         alunoCurso.setMedia(0);
     }
@@ -53,6 +59,9 @@ public class Aluno {
             throw new IndexOutOfBoundsException("Id invalido");
         }
         AlunoCurso alunoCurso = this.cursosAdquiridos.get(idCurso);
+        if(alunoCurso.getStatus()!=StatusCurso.NAO_INICIADO){
+            throw new IllegalStateException("Curso deve estar como não iniciado para começar.");
+        }
         alunoCurso.setStatus(StatusCurso.EM_ANDAMENTO);
         alunoCurso.setMedia(0);
     }
