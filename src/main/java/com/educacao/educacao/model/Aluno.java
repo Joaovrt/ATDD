@@ -16,13 +16,6 @@ public class Aluno {
         this.cursosAdquiridos = new ArrayList<AlunoCurso>();
     }
 
-    public Aluno(int id, String nome, List<AlunoCurso> listCursosAdquiridos) {
-        this.id = id;
-        this.nome = nome;
-        this.qtdCursosDisponiveis = 1;
-        this.cursosAdquiridos = listCursosAdquiridos;
-    }
-
     public String finalizarCurso(int idCurso, double media){
         if (idCurso < 0 || idCurso >= this.cursosAdquiridos.size()) {
             throw new IndexOutOfBoundsException("Id invalido");
@@ -70,17 +63,11 @@ public class Aluno {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public int getQtdCursosDisponiveis() {
         return qtdCursosDisponiveis;

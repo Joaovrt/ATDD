@@ -21,7 +21,8 @@ public class AlunoTests {
     AlunoCurso alunoCurso = new AlunoCurso(curso);
     List<AlunoCurso> listAlunoCurso = new ArrayList<AlunoCurso>();
     listAlunoCurso.add(alunoCurso);
-    Aluno aluno = new Aluno(0, "Aluno", listAlunoCurso);
+    Aluno aluno = new Aluno(0, "Aluno");
+    aluno.setCursosAdquiridos(listAlunoCurso);
     aluno.setQtdCursosDisponiveis(aluno.getQtdCursosDisponiveis()-1);
 
     //primeira execucao
@@ -45,7 +46,8 @@ public class AlunoTests {
     AlunoCurso alunoCurso = new AlunoCurso(curso);
     List<AlunoCurso> listAlunoCurso = new ArrayList<AlunoCurso>();
     listAlunoCurso.add(alunoCurso);
-    Aluno aluno = new Aluno(0, "Aluno", listAlunoCurso);
+    Aluno aluno = new Aluno(0, "Aluno");
+    aluno.setCursosAdquiridos(listAlunoCurso);
     aluno.setQtdCursosDisponiveis(aluno.getQtdCursosDisponiveis()-1);
 
     //primeira execucao
@@ -69,7 +71,8 @@ public class AlunoTests {
     AlunoCurso alunoCurso = new AlunoCurso(curso);
     List<AlunoCurso> listAlunoCurso = new ArrayList<AlunoCurso>();
     listAlunoCurso.add(alunoCurso);
-    Aluno aluno = new Aluno(0, "Aluno", listAlunoCurso);
+    Aluno aluno = new Aluno(0, "Aluno");
+    aluno.setCursosAdquiridos(listAlunoCurso);
     
     //primeira execucao
     aluno.iniciarCurso(0);
