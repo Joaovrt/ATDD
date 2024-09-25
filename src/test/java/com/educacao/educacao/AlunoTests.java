@@ -22,6 +22,7 @@ public class AlunoTests {
     List<AlunoCurso> listAlunoCurso = new ArrayList<AlunoCurso>();
     listAlunoCurso.add(alunoCurso);
     Aluno aluno = new Aluno(0, "Aluno", listAlunoCurso);
+    aluno.setQtdCursosDisponiveis(aluno.getQtdCursosDisponiveis()-1);
 
     //primeira execucao
     aluno.iniciarCurso(0);
@@ -34,7 +35,7 @@ public class AlunoTests {
     int qtdCursosDisponiveis = aluno.getQtdCursosDisponiveis();
     //segundo assert
     assertEquals("Benefício de mais 3 cursos adquirido!", resposta);
-    assertEquals(4,qtdCursosDisponiveis);
+    assertEquals(3,qtdCursosDisponiveis);
   }
 
   @Test
@@ -45,6 +46,7 @@ public class AlunoTests {
     List<AlunoCurso> listAlunoCurso = new ArrayList<AlunoCurso>();
     listAlunoCurso.add(alunoCurso);
     Aluno aluno = new Aluno(0, "Aluno", listAlunoCurso);
+    aluno.setQtdCursosDisponiveis(aluno.getQtdCursosDisponiveis()-1);
 
     //primeira execucao
     aluno.iniciarCurso(0);
@@ -57,7 +59,7 @@ public class AlunoTests {
     int qtdCursosDisponiveis = aluno.getQtdCursosDisponiveis();
     //segundo assert
     assertEquals("Nota mínima para o benefício não atingida. Assista ao vídeo listado na aba 'Revisão'.", resposta);
-    assertEquals(1,qtdCursosDisponiveis);
+    assertEquals(0,qtdCursosDisponiveis);
   }
 
   @Test
