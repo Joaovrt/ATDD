@@ -83,7 +83,7 @@ public class AlunoTests {
     //segunda execucao
     aluno.desistirCurso(0);
     StatusCurso statusPosDesistencia = aluno.getCursosAdquiridos().get(0).getStatus();
-    //primeiro assert
+    //segundo assert
     assertEquals(StatusCurso.NAO_INICIADO,statusPosDesistencia);
   }
 
